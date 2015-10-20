@@ -44,33 +44,33 @@
 	\date{October, 2015}
 	\maketitle
 	\tableofcontents
-	\begin{spacing}{1.1}
+	\begin{spacing}{1.0}
 	\chapter{数论算法}
 		\section{快速数论变换}
 			使用条件及注意事项：$mod$必须要是一个形如$a2^b + 1$的数，$prt$表示$mod$的原根。
-			\input{Number-Theory/Number-Theory-Transform.tex}
+			\input{Source/Number-Theory/Number-Theory-Transform.tex}
 		\section{多项式求逆}
 			使用条件及注意事项：求一个多项式在模意义下的逆元。
-			\input{Number-Theory/Inverse-Polynomial.tex}
+			\input{Source/Number-Theory/Inverse-Polynomial.tex}
 		\section{中国剩余定理}
 			使用条件及注意事项：模数可以不互质。
-			\input{Number-Theory/Chinese-Remainder-Theorem.tex}
+			\input{Source/Number-Theory/Chinese-Remainder-Theorem.tex}
 		\section{Miller Rabin}
-			\input{Number-Theory/Miller-Rabin.tex}
+			\input{Source/Number-Theory/Miller-Rabin.tex}
 		\section{Pollard Rho}
-			\input{Number-Theory/Pollard-Rho.tex}
+			\input{Source/Number-Theory/Pollard-Rho.tex}
 		\section{坚固的逆元}
-			\input{Number-Theory/Quick-Inverse.tex}
+			\input{Source/Number-Theory/Quick-Inverse.tex}
 		\section{直线下整点个数}
-			\input{Number-Theory/Lattice-Count.tex}
+			\input{Source/Number-Theory/Lattice-Count.tex}
 	\chapter{数值算法}
 		\section{快速傅立叶变换}
-			\input{Numerical-Algorithm/Fast-Fourier-Transform.tex}
+			\input{Source/Numerical-Algorithm/Fast-Fourier-Transform.tex}
 		\section{单纯形法求解线性规划}
 			使用条件及注意事项：返回结果为$max\{c_{1 \times m} \cdot x_{m \times 1} \ | \ x_{m \times 1} \geq 0_{m \times 1}, a_{n \times m} \cdot x_{m \times 1} \leq b_{n \times 1}\}$
-			\input{Numerical-Algorithm/Linear-Programming-Simplex.tex}
+			\input{Source/Numerical-Algorithm/Linear-Programming-Simplex.tex}
 		\section{自适应辛普森}
-			\input{Numerical-Algorithm/Adaptive-Simpson.tex}
+			\input{Source/Numerical-Algorithm/Adaptive-Simpson.tex}
 	\chapter{数据结构}
 		\section{Splay普通操作版}
 		\section{Splay区间操作版}
@@ -80,22 +80,22 @@
 		\section{Link-Cut-Tree}
 	\chapter{图论}
 		\section{强连通分量}
-			\input{Graph-Theory/Strongly-Connected-Components.tex}
+			\input{Source/Graph-Theory/Strongly-Connected-Components.tex}
 		\section{2-SAT问题}
-			\input{Graph-Theory/Two-Satisfiability.tex}
+			\input{Source/Graph-Theory/Two-Satisfiability.tex}
 		\section{二分图最大匹配}
 			\subsection{Hungary算法}
 				时间复杂度：$\mathcal{O}(V \cdot E)$
-				\input{Graph-Theory/Maximum-Matching-Hungary.tex}
+				\input{Source/Graph-Theory/Maximum-Matching-Hungary.tex}
 			\subsection{Hopcroft Karp算法}
 				时间复杂度：$\mathcal{O}(\sqrt{V} \cdot E)$
-				\input{Graph-Theory/Maximum-Matching-Hopcroft-Karp.tex}
+				\input{Source/Graph-Theory/Maximum-Matching-Hopcroft-Karp.tex}
 		\section{二分图最大权匹配}
 			时间复杂度：$\mathcal{O}(V^4)$
-			\input{Graph-Theory/Maximum-Weight-Matching.tex}
+			\input{Source/Graph-Theory/Maximum-Weight-Matching.tex}
 		\section{最大流}
 			时间复杂度：$\mathcal{O}(V^2 \cdot E)$
-			\input{Graph-Theory/Maximum-Flow.tex}
+			\input{Source/Graph-Theory/Maximum-Flow.tex}
 		\section{上下界网络流}
 			$B(u,v)$表示边$(u,v)$流量的下界，$C(u,v)$表示边$(u,v)$流量的上界，$F(u,v)$表示边$(u,v)$的流量。
 			设$G(u,v) = F(u,v) - B(u,v)$，显然有
@@ -117,22 +117,22 @@
 		\section{最小费用最大流}
 		\subsection{稀疏图}
 			时间复杂度：$\mathcal{O}(V \cdot E^2)$
-			\input{Graph-Theory/Minimum-Cost-Flow-Spfa.tex}
+			\input{Source/Graph-Theory/Minimum-Cost-Flow-Spfa.tex}
 		\subsection{稠密图}
 			使用条件：费用非负\\
 			\indent 时间复杂度：$\mathcal{O}(V \cdot E^2)$
-			\input{Graph-Theory/Minimum-Cost-Flow-Zkw.tex}
+			\input{Source/Graph-Theory/Minimum-Cost-Flow-Zkw.tex}
 		\section{一般图最大匹配}
 			时间复杂度：$\mathcal{O}(V^3)$
-			\input{Graph-Theory/Maximum-Matching-Blossom.tex}
+			\input{Source/Graph-Theory/Maximum-Matching-Blossom.tex}
 		\section{无向图全局最小割}
 			时间复杂度：$\mathcal{O}(V^3)$\\
 			\indent 注意事项：处理重边时，应该对边权累加
-			\input{Graph-Theory/Minimum-Cut-Stoer-Wagner.tex}
+			\input{Source/Graph-Theory/Minimum-Cut-Stoer-Wagner.tex}
 		%\subsection{最小树形图}
 		\section{有根树的同构}
 			时间复杂度：$\mathcal{O}(V log V)$
-			\input{Graph-Theory/Rooted-Tree-Isomorphism.tex}
+			\input{Source/Graph-Theory/Rooted-Tree-Isomorphism.tex}
 		%\subsection{度限制生成树}
 		%\subsection{弦图相关}
 		%\subsubsection{弦图的判定}
@@ -141,43 +141,43 @@
 			ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \geq n$$
 			\indent 返回结果：从顶点$1$出发的一个哈密尔顿回路\\
 			\indent 使用条件：$n \geq 3$
-			\input{Graph-Theory/Hamiltonian-Circuit-Ore.tex}
+			\input{Source/Graph-Theory/Hamiltonian-Circuit-Ore.tex}
 	\chapter{字符串}
 		\section{模式串匹配}
-			\input{String-Algorithm/Knuth-Morris-Pratt.tex}
+			\input{Source/String-Algorithm/Knuth-Morris-Pratt.tex}
 		\section{AC自动机}
-			\input{String-Algorithm/Aho-Corasick-Automaton.tex}
+			\input{Source/String-Algorithm/Aho-Corasick-Automaton.tex}
 		\section{后缀数组}
-			\input{String-Algorithm/Suffix-Array.tex}
+			\input{Source/String-Algorithm/Suffix-Array.tex}
 		\section{广义后缀自动机}
-			\input{String-Algorithm/Generalized-Suffix-Automaton.tex}
+			\input{Source/String-Algorithm/Generalized-Suffix-Automaton.tex}
 		\section{Manacher算法}
-			\input{String-Algorithm/Manacher.tex}
+			\input{Source/String-Algorithm/Manacher.tex}
 		\section{回文树}
-			%\input{String-Algorithm/Palindromic-Tree.tex}
+			\input{Source/String-Algorithm/Palindromic-Tree.tex}
 		\section{循环串最小表示}
-			%\input{String-Algorithm/Minimum-Circular-Representation.tex}
+			\input{Source/String-Algorithm/Minimum-Circular-Representation.tex}
 	\chapter{计算几何}
 		\section{二维基础}
 			\subsection{点类}
-				\input{Computational-Geometry/Point-Class-2D.tex}
+				\input{Source/Computational-Geometry/Point-Class-2D.tex}
 			\subsection{凸包}
-				\input{Computational-Geometry/Convex-Hull-2D.tex}
+				\input{Source/Computational-Geometry/Convex-Hull-2D.tex}
 			\subsection{半平面交}
-				\input{Computational-Geometry/Half-Plane-Intersection.tex}
+				\input{Source/Computational-Geometry/Half-Plane-Intersection.tex}
 			\subsection{最近点对}
 				
 		\section{三维基础}
 			\subsection{点类}
-				\input{Computational-Geometry/Point-Class-3D.tex}
+				\input{Source/Computational-Geometry/Point-Class-3D.tex}
 			\subsection{凸包}
-				\input{Computational-Geometry/Convex-Hull-3D.tex}
+				\input{Source/Computational-Geometry/Convex-Hull-3D.tex}
 			%\subsubsection{绕轴旋转}
 		\section{多边形}
 			\subsection{判断点在多边形内部}
-				\input{Computational-Geometry/Point-In-Polygon.tex}
+				\input{Source/Computational-Geometry/Point-In-Polygon.tex}
 			\subsection{多边形内整点计数}
-				\input{Computational-Geometry/Lattice-In-Polygon-Counter.tex}
+				\input{Source/Computational-Geometry/Lattice-In-Polygon-Counter.tex}
 			%\subsection{旋转卡壳}
 			%\subsection{动态凸包}
 			%\subsection{点到凸包的切线}
@@ -188,11 +188,11 @@
 			%\subsubsection{圆类}
 			%\subsection{圆的交集}
 			\subsection{最小覆盖圆}
-				\input{Computational-Geometry/Minimum-Coverage-Circle.tex}
+				\input{Source/Computational-Geometry/Minimum-Coverage-Circle.tex}
 			%\subsubsection{最小覆盖球}
 			%\subsubsection{判断圆存在交集}
 			\subsection{多边形与圆的交面积}
-				\input{Computational-Geometry/Polygon-Circle-Intersection.tex}
+				\input{Source/Computational-Geometry/Polygon-Circle-Intersection.tex}
 		%\subsection{三角形}
 			%\subsubsection{三角形的内心}
 			%\subsubsection{三角形的外心}
@@ -203,8 +203,8 @@
 			%\subsubsection{Vonoroi图}
 	\chapter{其它}
 		\section{STL使用方法}
-			\input{Hint/STL-Template.tex}
+			\input{Source/Hint/STL-Template.tex}
 	\chapter{数学公式}
-		\input{Mathematics/Mathematics-Formula.tex}
+		\input{Source/Mathematics/Mathematics-Formula.tex}
 	\end{spacing}
 \end{document}
