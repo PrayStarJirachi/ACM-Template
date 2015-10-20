@@ -29,3 +29,9 @@
 
 # Swap files
 *~
+
+# Other files
+*.aux
+*.toc
+*.log
+

@@ -1,0 +1,210 @@
+\documentclass[openany, a4paper, 10pt]{book}
+%\usepackage{ctex}
+\usepackage{bm}
+%\usepackage[fleqn]{amsmath}
+\usepackage{harpoon}
+\usepackage{fontspec}
+\usepackage{listings}
+\usepackage[left=1.5cm, right=1.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{bm}
+\usepackage{cmap}
+\usepackage{ctex}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{xeCJK}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{enumerate}
+\usepackage{indentfirst}
+\allowdisplaybreaks
+\oddsidemargin -0.1 true cm
+\if@twoside
+	\evensidemargin -0.1 true cm
+\fi
+%\setlength{\parindent}{0em}
+%\setlength{\mathindent}{0pt}
+\newfontfamily\Courier{Courier New}
+\lstset{
+	language=C++,
+	tabsize=4,
+	breaklines=tr,
+	extendedchars=false
+	xleftmargin=0em,
+	xrightmargin=0em,
+	aboveskip=1em,
+	numberstyle=\small\Courier,
+    basicstyle=\small\Courier
+}
+\begin{document}
+	\title{\textbf{\LARGE{Standard Code Library}}}
+	\author{Shanghai Jiao Tong University}
+	\date{October, 2015}
+	\maketitle
+	\tableofcontents
+	\begin{spacing}{1.1}
+	\chapter{数论算法}
+		\section{快速数论变换}
+			使用条件及注意事项：$mod$必须要是一个形如$a2^b + 1$的数，$prt$表示$mod$的原根。
+			\input{Number-Theory/Number-Theory-Transform.tex}
+		\section{多项式求逆}
+			使用条件及注意事项：求一个多项式在模意义下的逆元。
+			\input{Number-Theory/Inverse-Polynomial.tex}
+		\section{中国剩余定理}
+			使用条件及注意事项：模数可以不互质。
+			\input{Number-Theory/Chinese-Remainder-Theorem.tex}
+		\section{Miller Rabin}
+			\input{Number-Theory/Miller-Rabin.tex}
+		\section{Pollard Rho}
+			\input{Number-Theory/Pollard-Rho.tex}
+		\section{坚固的逆元}
+			\input{Number-Theory/Quick-Inverse.tex}
+		\section{直线下整点个数}
+			\input{Number-Theory/Lattice-Count.tex}
+	\chapter{数值算法}
+		\section{快速傅立叶变换}
+			\input{Numerical-Algorithm/Fast-Fourier-Transform.tex}
+		\section{单纯形法求解线性规划}
+			使用条件及注意事项：返回结果为$max\{c_{1 \times m} \cdot x_{m \times 1} \ | \ x_{m \times 1} \geq 0_{m \times 1}, a_{n \times m} \cdot x_{m \times 1} \leq b_{n \times 1}\}$
+			\input{Numerical-Algorithm/Linear-Programming-Simplex.tex}
+		\section{自适应辛普森}
+			\input{Numerical-Algorithm/Adaptive-Simpson.tex}
+	\chapter{数据结构}
+		\section{Splay普通操作版}
+		\section{Splay区间操作版}
+		\section{坚固的Treap}
+		\section{k-d树}
+		\section{树链剖分}
+		\section{Link-Cut-Tree}
+	\chapter{图论}
+		\section{强连通分量}
+			\input{Graph-Theory/Strongly-Connected-Components.tex}
+		\section{2-SAT问题}
+			\input{Graph-Theory/Two-Satisfiability.tex}
+		\section{二分图最大匹配}
+			\subsection{Hungary算法}
+				时间复杂度：$\mathcal{O}(V \cdot E)$
+				\input{Graph-Theory/Maximum-Matching-Hungary.tex}
+			\subsection{Hopcroft Karp算法}
+				时间复杂度：$\mathcal{O}(\sqrt{V} \cdot E)$
+				\input{Graph-Theory/Maximum-Matching-Hopcroft-Karp.tex}
+		\section{二分图最大权匹配}
+			时间复杂度：$\mathcal{O}(V^4)$
+			\input{Graph-Theory/Maximum-Weight-Matching.tex}
+		\section{最大流}
+			时间复杂度：$\mathcal{O}(V^2 \cdot E)$
+			\input{Graph-Theory/Maximum-Flow.tex}
+		\section{上下界网络流}
+			$B(u,v)$表示边$(u,v)$流量的下界，$C(u,v)$表示边$(u,v)$流量的上界，$F(u,v)$表示边$(u,v)$的流量。
+			设$G(u,v) = F(u,v) - B(u,v)$，显然有
+			$$0 \leq G(u,v) \leq C(u,v)-B(u,v)$$
+		\subsection{无源汇的上下界可行流}
+			建立超级源点$S^*$和超级汇点$T^*$，对于原图每条边$(u,v)$在新网络中连如下三条边：$S^* \rightarrow v$，容量为$B(u,v)$；$u \rightarrow T^*$，容量为$B(u,v)$；$u \rightarrow v$，容量为$C(u,v) - B(u,v)$。最后求新网络的最大流，判断从超级源点$S^*$出发的边是否都满流即可，边$(u,v)$的最终解中的实际流量为$G(u,v)+B(u,v)$。
+		\subsection{有源汇的上下界可行流}
+			从汇点$T$到源点$S$连一条上界为$\infty$，下界为$0$的边。按照\textbf{无源汇的上下界可行流}一样做即可，流量即为$T \rightarrow S$边上的流量。
+		\subsection{有源汇的上下界最大流}
+			\begin{enumerate}
+				\item 在\textbf{有源汇的上下界可行流}中，从汇点$T$到源点$S$的边改为连一条上界为$\infty$，下届为$x$的边。$x$满足二分性质，找到最大的$x$使得新网络存在\textbf{无源汇的上下界可行流}即为原图的最大流。
+				\item 从汇点$T$到源点$S$连一条上界为$\infty$，下界为$0$的边，变成无源汇的网络。按照\textbf{无源汇的上下界可行流}的方法，建立超级源点$S^*$和超级汇点$T^*$，求一遍$S^* \rightarrow T^*$的最大流，再将从汇点$T$到源点$S$的这条边拆掉，求一次$S \rightarrow T$的最大流即可。
+			\end{enumerate}
+		\subsection{有源汇的上下界最小流}
+			\begin{enumerate}
+				\item 在\textbf{有源汇的上下界可行流}中，从汇点$T$到源点$S$的边改为连一条上界为$x$，下界为$0$的边。$x$满足二分性质，找到最小的$x$使得新网络存在\textbf{无源汇的上下界可行流}即为原图的最小流。
+				\item 按照\textbf{无源汇的上下界可行流}的方法，建立超级源点$S^*$与超级汇点$T^*$，求一遍$S^* \rightarrow T^*$的最大流，但是注意这一次不加上汇点$T$到源点$S$的这条边，即不使之改为无源汇的网络去求解。求完后，再加上那条汇点$T$到源点$S$上界$\infty$的边。因为这条边下界为$0$，所以$S^*$，$T^*$无影响，再直接求一次$S^* \rightarrow T^*$的最大流。若超级源点$S^*$出发的边全部满流，则$T \rightarrow S$边上的流量即为原图的最小流，否则无解。
+			\end{enumerate}
+		\section{最小费用最大流}
+		\subsection{稀疏图}
+			时间复杂度：$\mathcal{O}(V \cdot E^2)$
+			\input{Graph-Theory/Minimum-Cost-Flow-Spfa.tex}
+		\subsection{稠密图}
+			使用条件：费用非负\\
+			\indent 时间复杂度：$\mathcal{O}(V \cdot E^2)$
+			\input{Graph-Theory/Minimum-Cost-Flow-Zkw.tex}
+		\section{一般图最大匹配}
+			时间复杂度：$\mathcal{O}(V^3)$
+			\input{Graph-Theory/Maximum-Matching-Blossom.tex}
+		\section{无向图全局最小割}
+			时间复杂度：$\mathcal{O}(V^3)$\\
+			\indent 注意事项：处理重边时，应该对边权累加
+			\input{Graph-Theory/Minimum-Cut-Stoer-Wagner.tex}
+		%\subsection{最小树形图}
+		\section{有根树的同构}
+			时间复杂度：$\mathcal{O}(V log V)$
+			\input{Graph-Theory/Rooted-Tree-Isomorphism.tex}
+		%\subsection{度限制生成树}
+		%\subsection{弦图相关}
+		%\subsubsection{弦图的判定}
+		%\subsubsection{弦图的团数}
+		\section{哈密尔顿回路（ORE性质的图）}
+			ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \geq n$$
+			\indent 返回结果：从顶点$1$出发的一个哈密尔顿回路\\
+			\indent 使用条件：$n \geq 3$
+			\input{Graph-Theory/Hamiltonian-Circuit-Ore.tex}
+	\chapter{字符串}
+		\section{模式串匹配}
+			\input{String-Algorithm/Knuth-Morris-Pratt.tex}
+		\section{AC自动机}
+			\input{String-Algorithm/Aho-Corasick-Automaton.tex}
+		\section{后缀数组}
+			\input{String-Algorithm/Suffix-Array.tex}
+		\section{广义后缀自动机}
+			\input{String-Algorithm/Generalized-Suffix-Automaton.tex}
+		\section{Manacher算法}
+			\input{String-Algorithm/Manacher.tex}
+		\section{回文树}
+			%\input{String-Algorithm/Palindromic-Tree.tex}
+		\section{循环串最小表示}
+			%\input{String-Algorithm/Minimum-Circular-Representation.tex}
+	\chapter{计算几何}
+		\section{二维基础}
+			\subsection{点类}
+				\input{Computational-Geometry/Point-Class-2D.tex}
+			\subsection{凸包}
+				\input{Computational-Geometry/Convex-Hull-2D.tex}
+			\subsection{半平面交}
+				\input{Computational-Geometry/Half-Plane-Intersection.tex}
+			\subsection{最近点对}
+				
+		\section{三维基础}
+			\subsection{点类}
+				\input{Computational-Geometry/Point-Class-3D.tex}
+			\subsection{凸包}
+				\input{Computational-Geometry/Convex-Hull-3D.tex}
+			%\subsubsection{绕轴旋转}
+		\section{多边形}
+			\subsection{判断点在多边形内部}
+				\input{Computational-Geometry/Point-In-Polygon.tex}
+			\subsection{多边形内整点计数}
+				\input{Computational-Geometry/Lattice-In-Polygon-Counter.tex}
+			%\subsection{旋转卡壳}
+			%\subsection{动态凸包}
+			%\subsection{点到凸包的切线}
+			%\subsection{直线与凸包的交点}
+			%\subsection{凸多边形的交集}
+			%\subsection{凸多边形内的最大圆}
+		\section{圆}
+			%\subsubsection{圆类}
+			%\subsection{圆的交集}
+			\subsection{最小覆盖圆}
+				\input{Computational-Geometry/Minimum-Coverage-Circle.tex}
+			%\subsubsection{最小覆盖球}
+			%\subsubsection{判断圆存在交集}
+			\subsection{多边形与圆的交面积}
+				\input{Computational-Geometry/Polygon-Circle-Intersection.tex}
+		%\subsection{三角形}
+			%\subsubsection{三角形的内心}
+			%\subsubsection{三角形的外心}
+			%\subsubsection{三角形的垂心}
+		%\subsection{黑暗科技}
+			%\subsubsection{平面图形的转动惯量}
+			%\subsubsection{平面区域处理}
+			%\subsubsection{Vonoroi图}
+	\chapter{其它}
+		\section{STL使用方法}
+			\input{Hint/STL-Template.tex}
+	\chapter{数学公式}
+		\input{Mathematics/Mathematics-Formula.tex}
+	\end{spacing}
+\end{document}
