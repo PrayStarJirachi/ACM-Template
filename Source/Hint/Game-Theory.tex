@@ -32,17 +32,23 @@
 \subsection{图上删边游戏}
 	\subsubsection{链的删边游戏}
 		\begin{enumerate}
-			\item // Todo
+			\item
+				游戏规则：对于一条链，其中一个端点是根，两人轮流删边，脱离根的部分也算被删去，最后没边可删的人输。
+			\item
+				做法：$sg[i] = n - dist(i) - 1$（其中$n$表示总点数，$dist(i)$表示离根的距离）
 		\end{enumerate}
 	\subsubsection{树的删边游戏}
 		\begin{enumerate}
-			\item // Todo
+			\item
+				游戏规则：对于一棵有根树，两人轮流删边，脱离根的部分也算被删去，没边可删的人输。
+			\item
+				做法：叶子结点的$sg=0$，其他节点的$sg$等于儿子结点的$sg+1$的异或和。
 		\end{enumerate}
 	\subsubsection{局部连通图的删边游戏}
 		\begin{enumerate}
-			\item // Todo
-		\end{enumerate}
-	\subsubsection{无向图的删边游戏}
-		\begin{enumerate}
-			\item // Todo
+			\item
+				游戏规则：在一个局部连通图上，两人轮流删边，脱离根的部分也算被删去，没边可删的人输。
+				局部连通图的构图规则是，在一棵基础树上加边得到，所有形成的环保证不共用边，且只与基础树有一个公共点。
+			\item
+				做法：去掉所有的偶环，将所有的奇环变为长度为1的链，然后做树的删边游戏。
 		\end{enumerate}

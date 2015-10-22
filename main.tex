@@ -30,6 +30,7 @@
 \lstset{
 	language=C++,
 	tabsize=4,
+	numbers=left,
 	breaklines=tr,
 	extendedchars=false
 	xleftmargin=0em,
@@ -73,11 +74,35 @@
 			\input{Source/Numerical-Algorithm/Adaptive-Simpson.tex}
 	\chapter{数据结构}
 		\section{Splay普通操作版}
+			使用条件及注意事项：\par
+			\begin{enumerate}
+				\item 插入$x$数
+				\item 删除$x$数(若有多个相同的数，因只删除一个)
+				\item 查询$x$数的排名(若有多个相同的数，因输出最小的排名)
+				\item 查询排名为$x$的数
+				\item 求$x$的前驱(前驱定义为小于$x$，且最大的数)
+				\item 求$x$的后继(后继定义为大于$x$，且最小的数)
+			\end{enumerate}
+			\input{Source/Data-Structure/Splay-Normal.tex}
 		\section{Splay区间操作版}
+			使用条件及注意事项：\par
+			这是为NOI2005维修数列的代码，仅供区间操作用的splay参考。
+			\input{Source/Data-Structure/Splay-Interval.tex}
 		\section{坚固的Treap}
+			使用条件及注意事项：题目来源UVA 12358
+			\input{Source/Data-Structure/Persistent-Treap}
 		\section{k-d树}
+			使用条件及注意事项：这是求$k$远点的代码，要求$k$近点的话把堆的比较函数改一改，把朝左儿子或者是右儿子
+			的方向改一改。
+			\input{Source/Data-Structure/K-Dimensional-Tree.tex}
 		\section{树链剖分}
+			\subsection{点操作版本}
+				使用条件及注意事项：树上最大（非空）子段和，注意一条路径询问的时候信息统计的顺序。
+				\input{Source/Data-Structure/Heavy-Light-Decomposition-Point.tex}
+			\subsection{链操作版本}
+				\input{Source/Data-Structure/Heavy-Light-Decomposition-Chain.tex}
 		\section{Link-Cut-Tree}
+			\input{Source/Data-Structure/Link-Cut-Tree.tex}
 	\chapter{图论}
 		\section{强连通分量}
 			\input{Source/Graph-Theory/Strongly-Connected-Components.tex}
@@ -94,8 +119,17 @@
 			时间复杂度：$\mathcal{O}(V^4)$
 			\input{Source/Graph-Theory/Maximum-Weight-Matching.tex}
 		\section{最大流}
-			时间复杂度：$\mathcal{O}(V^2 \cdot E)$
-			\input{Source/Graph-Theory/Maximum-Flow.tex}
+			\subsection{Dinic}
+				使用方法以及注意事项：$n$个点，$m$条边，$inf$为一个很大的值，源点$s$，汇点$t$，图中最大点的编号为$t$。\par
+				\indent 邻接表：$p$数组记录节点，$nxt$数组指向下一个位置,$c$数组记录可增广量，$h$数组记录表头(初始全为-1)。\par
+				\indent 时间复杂度：$\mathcal{O}(V^2 \cdot E)$
+				\input{Source/Graph-Theory/Maximum-Flow-Dinic.tex}
+			\subsection{ISAP}
+				\indent 时间复杂度：$\mathcal{O}(V^2 \cdot E)$
+				\input{Source/Graph-Theory/Maximum-Flow-ISAP.tex}
+			\subsection{SAP}
+				\indent 时间复杂度：$\mathcal{O}(V^2 \cdot E)$
+				\input{Source/Graph-Theory/Maximum-Flow-SAP.tex}
 		\section{上下界网络流}
 			$B(u,v)$表示边$(u,v)$流量的下界，$C(u,v)$表示边$(u,v)$流量的上界，$F(u,v)$表示边$(u,v)$的流量。
 			设$G(u,v) = F(u,v) - B(u,v)$，显然有
@@ -129,14 +163,18 @@
 			时间复杂度：$\mathcal{O}(V^3)$\\
 			\indent 注意事项：处理重边时，应该对边权累加
 			\input{Source/Graph-Theory/Minimum-Cut-Stoer-Wagner.tex}
-		%\subsection{最小树形图}
+		\section{最小树形图}
+			\input{Source/Graph-Theory/Chu-Liu-Algorithm.tex}
 		\section{有根树的同构}
 			时间复杂度：$\mathcal{O}(V log V)$
 			\input{Source/Graph-Theory/Rooted-Tree-Isomorphism.tex}
-		%\subsection{度限制生成树}
-		%\subsection{弦图相关}
-		%\subsubsection{弦图的判定}
-		%\subsubsection{弦图的团数}
+		\section{度限制生成树}
+			\input{Source/Graph-Theory/Minimum-Spanning-Tree-With-Degree-Limit.tex}
+		\section{弦图相关}
+			\subsection{弦图的判定}
+				\input{Source/Graph-Theory/Chord-Graph-Judgement.tex}
+			\subsection{弦图的团数}
+				\input{Source/Graph-Theory/Chord-Graph-Group-Counter.tex}
 		\section{哈密尔顿回路（ORE性质的图）}
 			ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \geq n$$
 			\indent 返回结果：从顶点$1$出发的一个哈密尔顿回路\\
@@ -145,6 +183,8 @@
 	\chapter{字符串}
 		\section{模式串匹配}
 			\input{Source/String-Algorithm/Knuth-Morris-Pratt.tex}
+		\section{坚固的模式串匹配}
+			\input{Source/String-Algorithm/Extended-Knuth-Morris-Pratt.tex}
 		\section{AC自动机}
 			\input{Source/String-Algorithm/Aho-Corasick-Automaton.tex}
 		\section{后缀数组}
@@ -166,13 +206,15 @@
 			\subsection{半平面交}
 				\input{Source/Computational-Geometry/Half-Plane-Intersection.tex}
 			\subsection{最近点对}
-				
+				\input{Source/Computational-Geometry/Closest-Pair-Of-Points.tex}
 		\section{三维基础}
 			\subsection{点类}
 				\input{Source/Computational-Geometry/Point-Class-3D.tex}
 			\subsection{凸包}
 				\input{Source/Computational-Geometry/Convex-Hull-3D.tex}
-			%\subsubsection{绕轴旋转}
+			\subsection{绕轴旋转}
+				使用方法及注意事项：逆时针绕轴$AB$旋转$\theta$角
+				\input{Source/Computational-Geometry/Rotate-3D.tex}
 		\section{多边形}
 			\subsection{判断点在多边形内部}
 				\input{Source/Computational-Geometry/Point-In-Polygon.tex}
@@ -189,7 +231,8 @@
 			%\subsection{圆的交集}
 			\subsection{最小覆盖圆}
 				\input{Source/Computational-Geometry/Minimum-Coverage-Circle.tex}
-			%\subsubsection{最小覆盖球}
+			\subsection{最小覆盖球}
+				\input{Source/Computational-Geometry/Minimum-Coverage-Ball.tex}
 			%\subsubsection{判断圆存在交集}
 			\subsection{多边形与圆的交面积}
 				\input{Source/Computational-Geometry/Polygon-Circle-Intersection.tex}
@@ -206,6 +249,8 @@
 			\input{Source/Hint/STL-Template.tex}
 		\section{博弈论相关}
 			\input{Source/Hint/Game-Theory.tex}
+		\section{Java Reference}
+			\input{Source/Hint/Java-Reference.tex}
 	\chapter{数学公式}
 		\input{Source/Mathematics/Mathematics-Formula.tex}
 	\end{spacing}

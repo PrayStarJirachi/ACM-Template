@@ -1,68 +1,46 @@
 \begin{lstlisting}
-int labelx[N], labely[N], match[N], slack[N];
-bool visitx[N], visity[N];
-
-bool dfs(int x) {
-    visitx[x] = true;
-    for (int y = 0; y < n; ++y) {
-        if (visity[y]) {
-            continue;
-        }
-        int delta = labelx[x] + labely[y] - graph[x][y];
-        if (delta == 0) {
-            visity[y] = true;
-            if (match[y] == -1 || dfs(match[y])) {
-                match[y] = x;
-                return true;
+int DFS(int x){
+    visx[x] = 1;
+    for (int y = 1;y <= ny;y ++){
+        if (visy[y]) continue;
+        int t = lx[x] + ly[y] - w[x][y];
+        if (t == 0) {
+            visy[y] = 1;
+            if (link[y] == -1||DFS(link[y])){
+                link[y] = x;
+                return 1;
             }
-        } else {
-            slack[y] = std::min(slack[y], delta);
         }
+        else slack[y] = min(slack[y],t);
     }
-    return false;
+    return 0;
 }
-
-int solve() {
-    for (int i = 0; i < n; ++i) {
-        match[i] = -1;
-        labelx[i] = INT_MIN;
-        labely[i] = 0;
-        for (int j = 0; j < n; ++j) {
-            labelx[i] = std::max(labelx[i], graph[i][j]);
-        }
-    }
-    for (int i = 0; i < n; ++i) {
+int KM(){
+    int i,j;
+    memset(link,-1,sizeof(link));
+    memset(ly,0,sizeof(ly));
+    for (i = 1; i <= nx; i++)
+        for (j = 1, lx[i] = -inf; j <= ny; j++)
+        	lx[i] = max(lx[i],w[i][j]);
+    for (int x = 1; x <= nx; x++){
+        for (i = 1; i <= ny; i++) slack[i] = inf;
         while (true) {
-            std::fill(visitx, visitx + n, 0);
-            std::fill(visity, visity + n, 0);
-            for (int j = 0; j < n; ++j) {
-                slack[j] = INT_MAX;
-            }
-            if (dfs(i)) {
-                break;
-            }
-            int delta = INT_MAX;
-            for (int j = 0; j < n; ++j) {
-                if (!visity[j]) {
-                    delta = std::min(delta, slack[j]);
-                }
-            }
-            for (int j = 0; j < n; ++j) {
-                if (visitx[j]) {
-                    labelx[j] -= delta;
-                }
-                if (visity[j]) {
-                    labely[j] += delta;
-                } else {
-                    slack[j] -= delta;
-                }
-            }
+            memset(visx, 0, sizeof(visx));
+            memset(visy, 0, sizeof(visy));
+            if (DFS(x)) break;
+            int d = inf;
+            for (i = 1; i <= ny;i++)
+                if (!visy[i] && d > slack[i]) d = slack[i];
+            for (i = 1; i <= nx; i++)
+                if (visx[i]) lx[i] -= d;
+            for (i = 1; i <= ny; i++)
+                if (visy[i]) ly[i] += d;
+                else slack[i] -= d;
         }
     }
-    int answer = 0;
-    for (int i = 0; i < n; ++i) {
-        answer += graph[match[i]][i];
-    }
-    return answer;
+    int res = 0;
+    for (i = 1;i <= ny;i ++)
+        if (link[i] > -1) res += w[link[i]][i];
+    return res;
 }
 \end{lstlisting}
